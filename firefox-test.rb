@@ -32,6 +32,9 @@ handset_model = "Galaxy Note 9"
 handset_os = "Android 9.0 (Pie)"
 expected_signup_complete_page_text = "The last step"
 
+# Step 4
+password = "Escspv@123"
+
 # TEST: sign up for utest
 describe "Sign Up For Free " do
   describe "Create a new user "	do
@@ -81,6 +84,11 @@ describe "Sign Up For Free " do
         signup_complete = SignupCompletePage.new(@driver)
         banner_text = signup_complete.get_banner_text()
         expect(banner_text).to eq(expected_signup_complete_page_text)
+
+        # Fill out information for the step 4 then complete the signup process
+        signup_complete.enter_password(password)
+        signup_complete.enter_confirm_password(password)
+        signup_complete.submit_to_complete() 
 
 		    @driver.quit
 	   end
