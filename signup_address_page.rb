@@ -16,10 +16,13 @@ class SignupAddressPage
         city_field = @driver.find_element(CITY_FIELD)
         city_field.send_keys(city)
         city_field.click
+        wait = Selenium::WebDriver::Wait.new(timeout: 10)
+        city_field.send_keys :arrow_down
     end
 
     def enter_zip_code(zip)
         zip_field = @driver.find_element(ZIP_FIELD)
+        zip_field.click
         zip_field.send_keys(zip)
     end
 
