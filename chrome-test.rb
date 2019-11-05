@@ -37,11 +37,10 @@ describe "Sign Up For Free " do
   describe "Create a new user "	do
   	 it "---- STARTING ----" do
 		    # Go to signup form
-        #@driver = Selenium::WebDriver.for :remote, desired_capabilities: :firefox
-        @driver = Selenium::WebDriver.for :firefox
+        @driver = Selenium::WebDriver.for :chrome
         @driver.navigate.to "https://www.utest.com/signup/personal"
         wait.new(:timeout => 300)
-        #wait.until { @driver.find_element(:class, 'sub-title').text == "Tell us about yourself" }
+        wait.until { @driver.find_element(:class, 'sub-title').text == "Tell us about yourself" }
 		    # Fill out and submit form
         signup_personal = SignupPersonalPage.new(@driver)
         signup_personal.enter_firstname(firstname)
@@ -71,10 +70,9 @@ describe "Sign Up For Free " do
         expect(banner_text).to eq(expected_signup_devices_page_text)
 
         # Fill out information for signup_devices page
-        #signup_devices.select_computer_os(computer_os)
-        #signup_devices.select_computer_os_version(os_version)
-        #signup_devices.select_computer_os_language(os_language)
-        signup_devices.submit_to_next_page()
+        signup_devices.select_computer_os(computer_os)
+        signup_devices.select_computer_os_version(os_version)
+        signup_devices.select_computer_os_language(os_language)
         wait.new(:timeout => 10)
 
         # Confirm successfully and go to the next page

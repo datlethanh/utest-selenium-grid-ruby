@@ -27,6 +27,7 @@ class SignupDevicesPage
         computer_os_select_list.click
         computer_os_options = @driver.find_elements(OS_OPTION)
         computer_os_options.each do |opt|
+            puts(opt.text)
             if opt.text == os
                 opt.click
                 break
@@ -35,11 +36,15 @@ class SignupDevicesPage
     end
 
     def select_computer_os_version(os_version)
-        os_version = @driver.find_element(OSVERSION_SELECT)
-        os_version.send_keys(os_version)
-        os_version.click
-        wait = Selenium::WebDriver::Wait.new(timeout: 10)
-        os_version.send_keys :arrow_down
+        computer_os_version_select_list = @driver.find_element(OSVERSION_SELECT)
+        computer_os_version_select_list.click
+        computer_os_version_options = @driver.find_elements(OSVERSION_OPTION)
+        computer_os_version_options.each do |opt|
+            if opt.text == os_version
+                opt.click
+                break
+            end
+        end
     end
 
     def select_computer_os_language(os_language)

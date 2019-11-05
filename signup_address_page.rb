@@ -17,7 +17,9 @@ class SignupAddressPage
         city_field.send_keys(city)
         city_field.click
         wait = Selenium::WebDriver::Wait.new(timeout: 10)
+        city_field.click
         city_field.send_keys :arrow_down
+        #city_field.click
     end
 
     def enter_zip_code(zip)
